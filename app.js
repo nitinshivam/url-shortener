@@ -3,6 +3,8 @@ const validator = require('validator');
 const express = require('express');
 const { nanoid } = require('nanoid');
 const app = express();
+const path = require('path');
+
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -31,7 +33,7 @@ const userSchema = new mongoose.Schema({
             validator: function(v) {
                 return /^[a-zA-Z0-9_-]+$/.test(v);
             },
-            message: props => `${props.value} is not a valid Slug`
+            message: props => `${props.value} is not a valid Alias`
         },
     }
 });
@@ -43,9 +45,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('index', { outputText: '' });
+    res.render('index', { outputText: '' ,err: ''});
 })
 
 app.post('/', async(req, res) => {
@@ -54,7 +57,7 @@ app.post('/', async(req, res) => {
         slug: req.body.slug
     }
     if (!inputData.slug) {
-        inputData.slug = nanoid(5);
+        inputData.slug = nanoid(4);
     }
     const insert = new user(inputData);
 
@@ -62,13 +65,17 @@ app.post('/', async(req, res) => {
         await insert.save().then(() => {
             console.log(insert);
         });
-        res.render('index', { outputText: `https://shorrtner.herokuapp.com/${insert.slug}` });
+        res.render('index', { outputText: `https://shorrtner.herokuapp.com/${insert.slug}` ,err:''});
     } catch (error) {
         console.log(error);
         if (error.code === 11000) {
-            res.render('index', { outputText: 'Slug is already used.Please Try again!' })
-        } else {
-            res.render('index', { outputText: error })
+            res.render('index', { err: 'Error: Alias is already used. Please Try again!',outputText:'' })
+        }
+        else if(error.errors.slug) {
+            res.render('index', { err: `Error: ${error.errors.slug}`,outputText:'' })
+        }
+        else {
+            res.render('index', { err: error,outputText:'' })
         }
     }
 

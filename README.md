@@ -1,6 +1,6 @@
-# url-shortner
+# url-shortener
 
-Simlpe url shortner
+Simlpe url shortener
 
 ### Installation
 
