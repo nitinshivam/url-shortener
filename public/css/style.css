@@ -30,7 +30,7 @@ body {
 
 #url {
     width: 50vw;
-    height: 6vh;
+    height: 2.5em;
     box-shadow: 10px 10px 40px 0px rgb(163, 162, 162);
     border: none;
     border-radius: 3px;
@@ -45,7 +45,7 @@ body {
 
 #slug {
     width: 20vw;
-    height: 6vh;
+    height: 2.5em;
     box-shadow: 10px 10px 40px 0px rgb(163, 162, 162);
     border: none;
     border-radius: 3px;
@@ -60,10 +60,10 @@ body {
 
 #btn {
     color: white;
-    height: 6.5vh;
+    height: 3em;
     width: auto;
     padding: 8px 20px 8px 20px;
-    font-size: 17px;
+    font-size: 1em;
     background-image: linear-gradient(15deg, #b114ef 0%, #4649d7 100%);
     border: 0px;
     border-radius: 3px;
@@ -74,34 +74,46 @@ body {
 }
 
 .short-url {
-    border-radius: 8px;
-    height: 7vh;
+    height: 3em;
     margin-top: 10vh;
-    width: 50vw;
-    background-color: white;
-    text-align: center;
-    box-shadow: 10px 10px 40px 0px rgb(163, 162, 162);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-#span {
-    line-height: 50px;
+#input-short-url{
+    /* border: 2px solid red; */
+    border: none;
+    box-shadow: 10px 10px 40px 0px rgb(163, 162, 162);
+    border-radius: 2px;
+    outline: none;
+    width: 40vw;
+    padding: 5px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
 }
 
 #copy-btn {
-    float: right;
     background-image: linear-gradient(15deg, #b114ef 0%, #4649d7 100%);
     color: white;
-    height: 7vh;
-    width: 5vw;
+    width: auto;
+    padding: 0.8em;
     border-radius: 4px;
-    font-size: 17px;
+    font-size: 1em;
     outline: none;
+    border: none;
 }
+
+#copy-btn:hover{
+    transform: scale(1.1);
+}
+
 
 .error {
     border: 2px solid red;
     border-radius: 8px;
-    height: 7vh;
+    height: 3em;
     margin-top: 10vh;
     width: 50vw;
     background-color: white;
@@ -110,10 +122,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0px 5px 0px 5px;
 }
 
 
-@media(max-width: 400px) {
+@media(max-width: 550px) {
 
     .heading {
         font-size: 5vh;
@@ -134,5 +147,14 @@ body {
         display: block;
         margin-top: 2vh;
         width: 100%;
+    }
+
+    #input-short-url{
+        width: 65vw;
+    }
+
+    .error {
+        width: 80vw;  
+        padding: 6px 15px 6px 15px; 
     }
 }

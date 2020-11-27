@@ -25,7 +25,8 @@
         </div>
         <% if (outputText) { %>
             <div class="short-url">
-                <span id="span"> <%= outputText %>  </span><button id="copy-btn" onclick="copyFun()">COPY</button>
+                <input type="text" id="input-short-url" value="<%= outputText %>" readonly>
+                <button id="copy-btn" onclick="copyFun()">COPY</button>
             </div>
         <% } %>
         <% if (err) { %>
