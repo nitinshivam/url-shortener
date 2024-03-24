@@ -65,7 +65,7 @@ app.post('/', async(req, res) => {
         await insert.save().then(() => {
             console.log(insert);
         });
-        res.render('index', { outputText: `https://shorrtner.herokuapp.com/${insert.slug}` ,err:''});
+        res.render('index', { outputText: `${process.env.HOST_URI}/${insert.slug}` ,err:''});
     } catch (error) {
         console.log(error);
         if (error.code === 11000) {
